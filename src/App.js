@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { AuthContext } from "./auth/authContext";
+import { AppRouter } from "./routes/AppRouter";
+
 
 function App() {
+  
+const [user, setUser] = useState({});
+const [checking, setChecking] = useState(true);
+const [userEdit, setUserEdit] = useState({});
+const [openEdit, setOpenEdit] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <AuthContext.Provider value={
+                {
+                    user,
+                    setUser,
+                    checking,
+                    setChecking,
+                    userEdit,
+                    setUserEdit,
+                    openEdit,
+                    setOpenEdit
+                }
+            } >
+     <AppRouter/>
+     </AuthContext.Provider>
     </div>
   );
 }
